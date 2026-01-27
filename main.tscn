@@ -145,6 +145,18 @@ sources/0 = SubResource("TileSetAtlasSource_1bvp3")
 sources/1 = SubResource("TileSetAtlasSource_272bh")
 sources/2 = SubResource("TileSetAtlasSource_5vw27")
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lquwl"]
+texture = ExtResource("5_7mycd")
+2:1/0 = 0
+1:1/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_7mycd"]
+sources/0 = SubResource("TileSetAtlasSource_lquwl")
+
 [node name="Main" type="Node" unique_id=377954640]
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=805860621]
@@ -170,3 +182,5 @@ tile_map_data = PackedByteArray("AAAFAB4AAAABAAAAAAAGAB4AAAABAAAAAAAHAB4AAAABAAA
 tile_set = SubResource("TileSet_lquwl")
 
 [node name="TileMapLayer2" type="TileMapLayer" parent="." unique_id=41183332]
+tile_map_data = PackedByteArray("AAASAB8AAAABAAAAAAASACAAAAABAAEAAAATAB8AAAACAAAAAAATACAAAAACAAEAAAANACEAAAABAAAAAAANACIAAAABAAEAAAAOACEAAAACAAAAAAAOACIAAAACAAEAAAATACIAAAABAAAAAAATACMAAAABAAEAAAAUACIAAAACAAAAAAAUACMAAAACAAEAAAD9/x8AAAABAAAAAAD9/yAAAAABAAEAAAD+/x8AAAACAAAAAAD+/yAAAAACAAEAAAAQACEAAAAFAAAAAAARACEAAAAGAAAAAAATACQAAAAFAAAAAAAUACQAAAAGAAAAAAA=")
+tile_set = SubResource("TileSet_7mycd")
