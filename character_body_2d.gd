@@ -3,6 +3,8 @@ extends CharacterBody2D
 const MAX_SPEED = 100
 var last_direction := Vector2(1,0)
 var fishing_ability = false
+
+var wait_for_me = 0
 func _physics_process(delta):
 	var direction = Input.get_vector("left", "right", "up", "down")
 	velocity = direction * MAX_SPEED
@@ -21,15 +23,16 @@ func _physics_process(delta):
 	elif direction.x ==0 and direction.y == 0:
 		%AnimationPlayer.play("forward_idle")
 
-		
+	print(fishing_ability)
 	move_and_slide()
+	
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	if is_in_group("player_and_lake"):
+	if is_in_group("player_and_lake") and wait_for_me != 0:
 		print("You can fish rn")
 		fishing_ability = true
-	print(body)
-
+	wait_for_me += 1
 func _on_area_2d_body_exited(body: Node2D) -> void:
 	print("You can't fish rn")
 	fishing_ability = false
+	
