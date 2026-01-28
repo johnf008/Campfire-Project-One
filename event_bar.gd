@@ -64,4 +64,3 @@ func reset():
 	start()
 	set_process(true)
 		
-	

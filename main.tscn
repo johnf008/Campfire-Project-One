@@ -307,7 +307,7 @@ size = Vector2(194, 150)
 [node name="Game" type="Node2D" parent="." unique_id=412768746 node_paths=PackedStringArray("event_bar")]
 y_sort_enabled = true
 script = ExtResource("1_kek77")
-event_bar = NodePath("EventBar")
+event_bar = NodePath("CharacterBody2D/Sprite2D/EventBar")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="Game" unique_id=1463063455]
 texture_filter = 1
@@ -350,6 +350,12 @@ script = ExtResource("7_272bh")
 unique_name_in_owner = true
 libraries/ = SubResource("AnimationLibrary_dg77c")
 
+[node name="EventBar" parent="Game/CharacterBody2D/Sprite2D" unique_id=1056787209 instance=ExtResource("9_4c57u")]
+offset_left = -92.90317
+offset_top = -21.290314
+offset_right = 107.09683
+offset_bottom = 8.709686
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Game/CharacterBody2D" unique_id=1224326413]
 position = Vector2(242.5, -181.5)
 shape = SubResource("RectangleShape2D_ig7tw")
@@ -375,15 +381,9 @@ shape = SubResource("RectangleShape2D_7mycd")
 position = Vector2(677, 422)
 shape = SubResource("RectangleShape2D_272bh")
 
-[node name="EventBar" parent="Game" unique_id=1056787209 instance=ExtResource("9_4c57u")]
-offset_left = 424.0
-offset_top = 372.0
-offset_right = 624.0
-offset_bottom = 402.0
-
+[connection signal="fail" from="Game/CharacterBody2D/Sprite2D/EventBar" to="Game" method="_on_event_bar_fail"]
+[connection signal="green_done" from="Game/CharacterBody2D/Sprite2D/EventBar" to="Game" method="_on_event_bar_green_done"]
+[connection signal="orange_done" from="Game/CharacterBody2D/Sprite2D/EventBar" to="Game" method="_on_event_bar_orange_done"]
+[connection signal="regular_done" from="Game/CharacterBody2D/Sprite2D/EventBar" to="Game" method="_on_event_bar_regular_done"]
 [connection signal="body_entered" from="Game/Area2D" to="Game/CharacterBody2D" method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Game/Area2D" to="Game/CharacterBody2D" method="_on_area_2d_body_exited"]
-[connection signal="fail" from="Game/EventBar" to="Game" method="_on_event_bar_fail"]
-[connection signal="green_done" from="Game/EventBar" to="Game" method="_on_event_bar_green_done"]
-[connection signal="orange_done" from="Game/EventBar" to="Game" method="_on_event_bar_orange_done"]
-[connection signal="regular_done" from="Game/EventBar" to="Game" method="_on_event_bar_regular_done"]
