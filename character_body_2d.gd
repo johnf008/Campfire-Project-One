@@ -22,6 +22,7 @@ func _physics_process(delta):
 		%AnimationPlayer.play("walk_forward")
 	elif direction.x ==0 and direction.y == 0:
 		%AnimationPlayer.play("forward_idle")
+		
 
 	print(fishing_ability)
 	move_and_slide()
