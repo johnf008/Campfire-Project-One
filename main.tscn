@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dep2flwcvbqkg" path="res://Objects/Basic Grass Biom things 1.png" id="5_7mycd"]
 [ext_resource type="Texture2D" uid="uid://da6qc6ilq5b1m" path="res://Tilesets/Fences.png" id="6_7mycd"]
 [ext_resource type="Texture2D" uid="uid://dmaf735jwunbg" path="res://Basic Charakter Spritesheet.png" id="6_272bh"]
+[ext_resource type="Script" uid="uid://cymypqy7e81nk" path="res://sprite_2d.gd" id="7_272bh"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1bvp3"]
 texture = ExtResource("3_h2yge")
@@ -212,6 +213,23 @@ tracks/0/keys = {
 "values": [0]
 }
 
+[sub_resource type="Animation" id="Animation_dg77c"]
+resource_name = "walk_back"
+length = 0.26666668
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.06666667, 0.13333334, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [4, 5, 6, 7]
+}
+
 [sub_resource type="Animation" id="Animation_4c57u"]
 resource_name = "walk_forward"
 length = 0.26666668
@@ -227,6 +245,23 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_ycdy4"]
+resource_name = "walk_left"
+length = 0.3
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.06666667, 0.13333334, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [8, 9, 10, 11]
 }
 
 [sub_resource type="Animation" id="Animation_efxa6"]
@@ -250,12 +285,14 @@ tracks/0/keys = {
 _data = {
 &"RESET": SubResource("Animation_5vw27"),
 &"forward_idle": SubResource("Animation_kek77"),
+&"walk_back": SubResource("Animation_dg77c"),
 &"walk_forward": SubResource("Animation_4c57u"),
+&"walk_left": SubResource("Animation_ycdy4"),
 &"walk_right": SubResource("Animation_efxa6")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ig7tw"]
-size = Vector2(21, 24)
+size = Vector2(9.75, 11)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7mycd"]
 size = Vector2(195, 149)
@@ -289,18 +326,21 @@ position = Vector2(166, 521)
 script = ExtResource("1_h2yge")
 
 [node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D" unique_id=209450738]
-position = Vector2(242.99997, -179.99998)
-scale = Vector2(0.13333333, 0.13333333)
+texture_filter = 1
+position = Vector2(242, -181.00002)
+scale = Vector2(1.0333339, 1.0333339)
 texture = ExtResource("6_272bh")
 hframes = 4
 vframes = 4
 frame = 12
+script = ExtResource("7_272bh")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CharacterBody2D/Sprite2D" unique_id=415933924]
+unique_name_in_owner = true
 libraries/ = SubResource("AnimationLibrary_dg77c")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=1224326413]
-position = Vector2(243, -181)
+position = Vector2(242.125, -181.5)
 shape = SubResource("RectangleShape2D_ig7tw")
 
 [node name="Camera2D" type="Camera2D" parent="CharacterBody2D" unique_id=1592706426]
