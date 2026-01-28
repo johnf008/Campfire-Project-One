@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://4vmc3pitj50y"]
+
+[node name="Control" type="Control" unique_id=1830835895]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="." unique_id=1073815595]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Bait"
