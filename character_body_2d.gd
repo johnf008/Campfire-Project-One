@@ -7,12 +7,19 @@ func _physics_process(delta):
 	var direction = Input.get_vector("left", "right", "up", "down")
 	velocity = direction * MAX_SPEED
 	
-	
-	
 	if direction.length() > 0:
 		last_direction = direction
 	
-	print(direction)
+	if direction.x == -1.0:
+		%AnimationPlayer.play("walk_left")
+	elif direction.x == 1.0:
+		%AnimationPlayer.play("walk_right")
+	elif direction.y == -1.0:
+		%AnimationPlayer.play("walk_back")
+	elif direction.y == 1.0:
+		%AnimationPlayer.play("walk_forward")
+	elif direction.x ==0 and direction.y == 0:
+		%AnimationPlayer.play("forward_idle")
 
 		
 	move_and_slide()
