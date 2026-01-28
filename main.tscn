@@ -1,12 +1,14 @@
 [gd_scene format=4 uid="uid://jeiclmbox3ay"]
 
 [ext_resource type="Script" uid="uid://cqkesqvp828ge" path="res://character_body_2d.gd" id="1_h2yge"]
+[ext_resource type="Script" uid="uid://d3t6tkjpfbhed" path="res://game.gd" id="1_kek77"]
 [ext_resource type="Texture2D" uid="uid://cq7dusruopfyh" path="res://Tilesets/Grass.png" id="3_h2yge"]
 [ext_resource type="Texture2D" uid="uid://bxx7rtmrojedg" path="res://Tilesets/Water.png" id="4_lquwl"]
 [ext_resource type="Texture2D" uid="uid://dep2flwcvbqkg" path="res://Objects/Basic Grass Biom things 1.png" id="5_7mycd"]
 [ext_resource type="Texture2D" uid="uid://da6qc6ilq5b1m" path="res://Tilesets/Fences.png" id="6_7mycd"]
 [ext_resource type="Texture2D" uid="uid://dmaf735jwunbg" path="res://Basic Charakter Spritesheet.png" id="6_272bh"]
 [ext_resource type="Script" uid="uid://cymypqy7e81nk" path="res://sprite_2d.gd" id="7_272bh"]
+[ext_resource type="PackedScene" uid="uid://cyyv4335bhakk" path="res://event_bar.tscn" id="9_4c57u"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1bvp3"]
 texture = ExtResource("3_h2yge")
@@ -302,8 +304,10 @@ size = Vector2(194, 150)
 
 [node name="Main" type="Node" unique_id=377954640]
 
-[node name="Game" type="Node2D" parent="." unique_id=412768746]
+[node name="Game" type="Node2D" parent="." unique_id=412768746 node_paths=PackedStringArray("event_bar")]
 y_sort_enabled = true
+script = ExtResource("1_kek77")
+event_bar = NodePath("EventBar")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="Game" unique_id=1463063455]
 texture_filter = 1
@@ -371,5 +375,15 @@ shape = SubResource("RectangleShape2D_7mycd")
 position = Vector2(677, 422)
 shape = SubResource("RectangleShape2D_272bh")
 
+[node name="EventBar" parent="Game" unique_id=1056787209 instance=ExtResource("9_4c57u")]
+offset_left = 424.0
+offset_top = 372.0
+offset_right = 624.0
+offset_bottom = 402.0
+
 [connection signal="body_entered" from="Game/Area2D" to="Game/CharacterBody2D" method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Game/Area2D" to="Game/CharacterBody2D" method="_on_area_2d_body_exited"]
+[connection signal="fail" from="Game/EventBar" to="Game" method="_on_event_bar_fail"]
+[connection signal="green_done" from="Game/EventBar" to="Game" method="_on_event_bar_green_done"]
+[connection signal="orange_done" from="Game/EventBar" to="Game" method="_on_event_bar_orange_done"]
+[connection signal="regular_done" from="Game/EventBar" to="Game" method="_on_event_bar_regular_done"]
