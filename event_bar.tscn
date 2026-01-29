@@ -17,3 +17,5 @@ layout_mode = 1
 offset_right = 6.0
 offset_bottom = 21.0
 texture = ExtResource("3_sov21")
+
+[node name="Marker2D" type="Marker2D" parent="." unique_id=151493004]

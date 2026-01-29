@@ -12,8 +12,8 @@ signal cooldown()
 @onready var cooldown_timer: Timer = $"Cooldown Timer"
 
 var x_end_position: float
-var green_range_x = Vector2(8,13)
-var orange_range_x = Vector2(28, 36)
+var green_range_x = Vector2(9,17)
+var orange_range_x = Vector2(35, 46)
 
 var ready_for_input = true
 
@@ -45,7 +45,7 @@ func _finish(normalDone = false):
 	
 	
 	if normalDone:
-		green_done.emit()
+		regular_done.emit()
 		return
 	
 	var in_orange_range = _in_range(orange_range_x)
