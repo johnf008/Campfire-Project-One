@@ -19,6 +19,9 @@ var ready_for_check = false
 var ready_for_input = true
 var first_time = true
 
+var touching_water = false
+var trigger_fishing = false
+
 func _ready() -> void:
 	x_end_position = global_position.x - (indicator.size.x) / 2
 	print("Bar size: ", size)
@@ -44,7 +47,9 @@ func _process(delta: float) -> void:
 		_finish(true)
 
 func _input(_event: InputEvent) -> void:
-	if Input.is_action_just_pressed("accept") and ready_for_input:
+	if Input.is_action_just_pressed("accept") and touching_water:
+			trigger_fishing = true
+	if Input.is_action_just_pressed("accept") and ready_for_input and trigger_fishing:
 		event_bar.visible = true
 		_finish()
 		ready_for_input = false
@@ -96,3 +101,11 @@ func _on_character_body_2d_start_bar() -> void:
 	
 	start()
 	set_process(true)
+
+
+func _on_character_body_2d_six_seven() -> void:
+	touching_water = true
+
+
+func _on_area_2d_body_exited(body: Node2D) -> void:
+	touching_water = false
