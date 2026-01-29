@@ -377,7 +377,7 @@ shape = SubResource("RectangleShape2D_7mycd")
 position = Vector2(677, 422)
 shape = SubResource("RectangleShape2D_272bh")
 
-[connection signal="cooldown" from="Game/CharacterBody2D/Sprite2D/EventBar" to="Game" method="_on_event_bar_cooldown"]
+[connection signal="startAgain" from="Game" to="Game/CharacterBody2D/Sprite2D/EventBar" method="_on_game_start_again"]
 [connection signal="fail" from="Game/CharacterBody2D/Sprite2D/EventBar" to="Game" method="_on_event_bar_fail"]
 [connection signal="green_done" from="Game/CharacterBody2D/Sprite2D/EventBar" to="Game" method="_on_event_bar_green_done"]
 [connection signal="orange_done" from="Game/CharacterBody2D/Sprite2D/EventBar" to="Game" method="_on_event_bar_orange_done"]

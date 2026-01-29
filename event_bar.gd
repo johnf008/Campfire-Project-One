@@ -15,6 +15,8 @@ var x_end_position: float
 var green_range_x = Vector2(8,13)
 var orange_range_x = Vector2(28, 36)
 
+var ready_for_input = true
+
 func _ready() -> void:
 	x_end_position = global_position.x - (indicator.size.x) / 2
 	print("Bar size: ", size)
@@ -34,9 +36,9 @@ func _process(delta: float) -> void:
 		_finish(true)
 
 func _input(_event: InputEvent) -> void:
-	if Input.is_action_just_pressed("ui_accept"):
-		cooldown.emit()
+	if Input.is_action_just_pressed("ui_accept") and ready_for_input:
 		_finish()
+		ready_for_input = false
 
 func _finish(normalDone = false):
 	set_process(false)
@@ -71,3 +73,7 @@ func reset():
 	start()
 	set_process(true)
 		
+
+
+func _on_game_start_again() -> void:
+	ready_for_input = true
