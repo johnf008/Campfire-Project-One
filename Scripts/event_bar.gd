@@ -10,6 +10,8 @@ signal cooldown()
 
 @onready var indicator: TextureRect = $Indicator
 @onready var cooldown_timer: Timer = $"Cooldown Timer"
+@export var event_bar: TextureRect
+
 
 var x_end_position: float
 var green_range_x = Vector2(9,17)
@@ -22,13 +24,16 @@ func _ready() -> void:
 	x_end_position = global_position.x - (indicator.size.x) / 2
 	print("Bar size: ", size)
 	print("Indicator size: ", indicator.size)
+	set_process(false)
 
 func start():
+	
 	var end_center_offset = Vector2(size.x, size.y / 2)
 	var indicator_ceter_off_set = indicator.size / 2
 	
 	indicator.position = end_center_offset - indicator_ceter_off_set
-
+	
+	print("Bro have you started")
 func _process(delta: float) -> void:
 	indicator.position.x -= size.x / duration * delta
 	
@@ -36,7 +41,7 @@ func _process(delta: float) -> void:
 		_finish(true)
 
 func _input(_event: InputEvent) -> void:
-	if Input.is_action_just_pressed("ui_accept") and ready_for_input:
+	if Input.is_action_just_pressed("accept") and ready_for_input:
 		_finish()
 		ready_for_input = false
 
@@ -81,3 +86,4 @@ func _on_game_start_again() -> void:
 
 func _on_character_body_2d_start_bar() -> void:
 	start()
+	set_process(true)

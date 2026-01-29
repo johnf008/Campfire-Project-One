@@ -33,14 +33,16 @@ func _physics_process(delta):
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if is_in_group("player_and_lake") and wait_for_me != 0:
 		fishing_ability = true
-		event_bar.visible = true
+		#event_bar.visible = true
 		
 		#i wanna emit something to the event bar that says yo i want to start the thing
-		startBar.emit()
+		if Input.is_action_just_pressed("accept"):
+			print("Broooo did you do it?")
+			startBar.emit()
 		
 		
 	wait_for_me += 1
 func _on_area_2d_body_exited(body: Node2D) -> void:
 	fishing_ability = false
-	event_bar.visible = false
+	#event_bar.visible = false
 	

@@ -1,14 +1,15 @@
 [gd_scene format=4 uid="uid://jeiclmbox3ay"]
 
-[ext_resource type="Script" uid="uid://cqkesqvp828ge" path="res://character_body_2d.gd" id="1_h2yge"]
+[ext_resource type="Script" uid="uid://cqkesqvp828ge" path="res://Scripts/character_body_2d.gd" id="1_h2yge"]
 [ext_resource type="Script" uid="uid://d3t6tkjpfbhed" path="res://game.gd" id="1_kek77"]
 [ext_resource type="Texture2D" uid="uid://cq7dusruopfyh" path="res://Tilesets/Grass.png" id="3_h2yge"]
 [ext_resource type="Texture2D" uid="uid://bxx7rtmrojedg" path="res://Tilesets/Water.png" id="4_lquwl"]
 [ext_resource type="Texture2D" uid="uid://dep2flwcvbqkg" path="res://Objects/Basic Grass Biom things 1.png" id="5_7mycd"]
 [ext_resource type="Texture2D" uid="uid://da6qc6ilq5b1m" path="res://Tilesets/Fences.png" id="6_7mycd"]
 [ext_resource type="Texture2D" uid="uid://dmaf735jwunbg" path="res://Basic Charakter Spritesheet.png" id="6_272bh"]
-[ext_resource type="Script" uid="uid://cymypqy7e81nk" path="res://sprite_2d.gd" id="7_272bh"]
+[ext_resource type="Script" uid="uid://cymypqy7e81nk" path="res://Scripts/sprite_2d.gd" id="7_272bh"]
 [ext_resource type="PackedScene" uid="uid://cyyv4335bhakk" path="res://event_bar.tscn" id="9_4c57u"]
+[ext_resource type="PackedScene" uid="uid://wdg2lwct66ew" path="res://label_of_triggers.tscn" id="10_4c57u"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1bvp3"]
 texture = ExtResource("3_h2yge")
@@ -351,12 +352,23 @@ script = ExtResource("7_272bh")
 unique_name_in_owner = true
 libraries/ = SubResource("AnimationLibrary_dg77c")
 
-[node name="EventBar" parent="Game/CharacterBody2D/Sprite2D" unique_id=1056787209 instance=ExtResource("9_4c57u")]
-visible = false
+[node name="EventBar" parent="Game/CharacterBody2D/Sprite2D" unique_id=1056787209 node_paths=PackedStringArray("event_bar") instance=ExtResource("9_4c57u")]
 offset_left = -35.806435
 offset_top = -21.290312
 offset_right = 39.193565
 offset_bottom = -10.290312
+event_bar = NodePath(".")
+
+[node name="Label of Triggers" parent="Game/CharacterBody2D/Sprite2D" unique_id=1399187086 instance=ExtResource("10_4c57u")]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+offset_left = -24.0
+offset_top = -24.0
+offset_right = -24.0
+offset_bottom = -24.0
+grow_vertical = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Game/CharacterBody2D" unique_id=1224326413]
 position = Vector2(242.5, -181.5)
@@ -389,5 +401,8 @@ shape = SubResource("RectangleShape2D_272bh")
 [connection signal="green_done" from="Game/CharacterBody2D/Sprite2D/EventBar" to="Game" method="_on_event_bar_green_done"]
 [connection signal="orange_done" from="Game/CharacterBody2D/Sprite2D/EventBar" to="Game" method="_on_event_bar_orange_done"]
 [connection signal="regular_done" from="Game/CharacterBody2D/Sprite2D/EventBar" to="Game" method="_on_event_bar_regular_done"]
+[connection signal="body_entered" from="Game/Area2D" to="Game" method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="Game/Area2D" to="Game/CharacterBody2D" method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Game/Area2D" to="Game/CharacterBody2D/Sprite2D/Label of Triggers" method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Game/Area2D" to="Game/CharacterBody2D" method="_on_area_2d_body_exited"]
+[connection signal="body_exited" from="Game/Area2D" to="Game/CharacterBody2D/Sprite2D/Label of Triggers" method="_on_area_2d_body_exited"]

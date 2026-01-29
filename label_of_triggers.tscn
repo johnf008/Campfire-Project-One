@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://wdg2lwct66ew"]
+
+[ext_resource type="Script" uid="uid://dtd47ajwmgi1j" path="res://label_of_triggers.gd" id="1_ipnro"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_kud1s"]
+font_size = 10
+font_color = Color(0, 0, 0, 1)
+
+[node name="Label of Triggers" type="Control" unique_id=1399187086 node_paths=PackedStringArray("instructions")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ipnro")
+instructions = NodePath("Instructions")
+
+[node name="Instructions" type="Label" parent="." unique_id=342385229]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -247.5
+offset_top = -20.0
+offset_right = 247.5
+grow_horizontal = 2
+grow_vertical = 0
+text = "Test"
+label_settings = SubResource("LabelSettings_kud1s")
+horizontal_alignment = 1
