@@ -4,10 +4,12 @@ signal regular_done()
 signal green_done()
 signal orange_done()
 signal fail()
+signal cooldown()
 
 @export var duration: float = 1.0
 
 @onready var indicator: TextureRect = $Indicator
+@onready var cooldown_timer: Timer = $"Cooldown Timer"
 
 var x_end_position: float
 var green_range_x = Vector2(8,13)
@@ -33,10 +35,12 @@ func _process(delta: float) -> void:
 
 func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("ui_accept"):
+		cooldown.emit()
 		_finish()
 
 func _finish(normalDone = false):
 	set_process(false)
+	
 	
 	if normalDone:
 		green_done.emit()
@@ -51,6 +55,8 @@ func _finish(normalDone = false):
 		green_done.emit()
 	else:
 		fail.emit()
+	
+	
 	
 	
 func _in_range(event_range: Vector2):
