@@ -24,16 +24,13 @@ func _physics_process(delta):
 		%AnimationPlayer.play("forward_idle")
 		
 
-	print(fishing_ability)
 	move_and_slide()
 	
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if is_in_group("player_and_lake") and wait_for_me != 0:
-		print("You can fish rn")
 		fishing_ability = true
 	wait_for_me += 1
 func _on_area_2d_body_exited(body: Node2D) -> void:
-	print("You can't fish rn")
 	fishing_ability = false
 	

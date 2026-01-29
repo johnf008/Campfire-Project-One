@@ -10,12 +10,13 @@ signal fail()
 @onready var indicator: TextureRect = $Indicator
 
 var x_end_position: float
-var green_range_x = Vector2(25,44)
-var orange_range_x = Vector2(93,124)
+var green_range_x = Vector2(8,13)
+var orange_range_x = Vector2(28, 36)
 
 func _ready() -> void:
 	x_end_position = global_position.x - indicator.size.x / 2
-	
+	print("Bar size: ", size)
+	print("Indicator size: ", indicator.size)
 	start()
 
 func start():

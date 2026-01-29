@@ -351,10 +351,10 @@ unique_name_in_owner = true
 libraries/ = SubResource("AnimationLibrary_dg77c")
 
 [node name="EventBar" parent="Game/CharacterBody2D/Sprite2D" unique_id=1056787209 instance=ExtResource("9_4c57u")]
-offset_left = -92.90317
-offset_top = -21.290314
-offset_right = 107.09683
-offset_bottom = 8.709686
+offset_left = -29.999973
+offset_top = -3.8709679
+offset_right = 170.00003
+offset_bottom = 26.129032
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Game/CharacterBody2D" unique_id=1224326413]
 position = Vector2(242.5, -181.5)
