@@ -328,11 +328,12 @@ texture_filter = 1
 tile_map_data = PackedByteArray("AAAWAAwAAAABAAAAAAAkABUAAAACAAMAAAAlABUAAAACAAMAAAAmABUAAAACAAMAAAAnABUAAAACAAMAAAAoABUAAAACAAMAAAApABUAAAACAAMAAAAqABUAAAACAAMAAAArABUAAAACAAMAAAAsABUAAAACAAMAAAAtABUAAAACAAMAAAAuABUAAAACAAMAAAAvABUAAAACAAMAAAAwABUAAAADAAAAAAAwABYAAAAAAAEAAAAwABcAAAAAAAEAAAAwABgAAAAAAAEAAAAwABkAAAAAAAEAAAAwABoAAAAAAAEAAAAwABsAAAAAAAEAAAAwABwAAAAAAAEAAAAwAB0AAAAAAAEAAAAwAB4AAAAAAAEAAAAwAB8AAAADAAIAAAAvAB8AAAACAAMAAAAuAB8AAAACAAMAAAAtAB8AAAACAAMAAAAsAB8AAAACAAMAAAArAB8AAAACAAMAAAAqAB8AAAACAAMAAAApAB8AAAACAAMAAAAoAB8AAAACAAMAAAAnAB8AAAACAAMAAAAmAB8AAAACAAMAAAAlAB8AAAACAAMAAAAkAB8AAAACAAMAAAA=")
 tile_set = SubResource("TileSet_4c57u")
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="Game" unique_id=805860621 groups=["player_and_lake"]]
+[node name="CharacterBody2D" type="CharacterBody2D" parent="Game" unique_id=805860621 node_paths=PackedStringArray("event_bar") groups=["player_and_lake"]]
 z_index = -1
 y_sort_enabled = true
 position = Vector2(166, 521)
 script = ExtResource("1_h2yge")
+event_bar = NodePath("Sprite2D/EventBar")
 
 [node name="Sprite2D" type="Sprite2D" parent="Game/CharacterBody2D" unique_id=209450738]
 z_index = 1
@@ -351,6 +352,11 @@ unique_name_in_owner = true
 libraries/ = SubResource("AnimationLibrary_dg77c")
 
 [node name="EventBar" parent="Game/CharacterBody2D/Sprite2D" unique_id=1056787209 instance=ExtResource("9_4c57u")]
+visible = false
+offset_left = -35.806435
+offset_top = -21.290312
+offset_right = 39.193565
+offset_bottom = -10.290312
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Game/CharacterBody2D" unique_id=1224326413]
 position = Vector2(242.5, -181.5)

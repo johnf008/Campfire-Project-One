@@ -3,8 +3,10 @@ extends CharacterBody2D
 const MAX_SPEED = 100
 var last_direction := Vector2(1,0)
 var fishing_ability = false
+@export var event_bar: TextureRect
 
 var wait_for_me = 0
+
 func _physics_process(delta):
 	var direction = Input.get_vector("left", "right", "up", "down")
 	velocity = direction * MAX_SPEED
@@ -30,7 +32,10 @@ func _physics_process(delta):
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if is_in_group("player_and_lake") and wait_for_me != 0:
 		fishing_ability = true
+		event_bar.visible = true
+		
 	wait_for_me += 1
 func _on_area_2d_body_exited(body: Node2D) -> void:
 	fishing_ability = false
+	event_bar.visible = false
 	

@@ -24,15 +24,15 @@ func _ready() -> void:
 	start()
 
 func start():
-	var end_center_offset = Vector2((size.x), (size.y ) / 2)
+	var end_center_offset = Vector2(size.x, size.y / 2)
 	var indicator_ceter_off_set = indicator.size / 2
 	
-	indicator.global_position = global_position + end_center_offset - indicator_ceter_off_set
+	indicator.position = end_center_offset - indicator_ceter_off_set
 
 func _process(delta: float) -> void:
-	indicator.global_position.x -= (size.x) / duration * delta
+	indicator.position.x -= size.x / duration * delta
 	
-	if indicator.global_position.x < x_end_position:
+	if indicator.position.x < -indicator.size.x / 2:
 		_finish(true)
 
 func _input(_event: InputEvent) -> void:
@@ -62,7 +62,7 @@ func _finish(normalDone = false):
 	
 	
 func _in_range(event_range: Vector2):
-	var indicator_position = indicator.global_position.x + (indicator.size.x) / 2 - global_position.x
+	var indicator_position = indicator.position.x + indicator.size.x / 2
 	
 	if indicator_position >= event_range.x and indicator_position <= event_range.y:
 		return true
