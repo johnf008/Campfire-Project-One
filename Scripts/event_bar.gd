@@ -30,7 +30,9 @@ func _ready() -> void:
 	
 
 func start():
-	
+	#okay so i figured out that the error had to do with the indicators
+	#position already starting at the end making the trigger play so i need the trigger 
+	#to start at the beginning
 	
 	var end_center_offset = Vector2(size.x, size.y / 2)
 	var indicator_ceter_off_set = indicator.size / 2
@@ -47,33 +49,39 @@ func _process(delta: float) -> void:
 		_finish(true)
 
 func _input(_event: InputEvent) -> void:
-	if Input.is_action_just_pressed("accept") and touching_water:
-			trigger_fishing = true
+	
 	if Input.is_action_just_pressed("accept") and ready_for_input and trigger_fishing:
-		event_bar.visible = true
 		_finish()
 		ready_for_input = false
+		print("six")
+		
+	if Input.is_action_just_pressed("accept") and touching_water and !is_processing():
+			trigger_fishing = true
+			event_bar.visible = true
+			event_bar.visible = true
+			set_process(true)
+			print("seven")
+	
 
 func _finish(normalDone = false):
 	set_process(false)
 	
-	if not first_time:
-		if normalDone:
-			regular_done.emit()
-			return
-		var in_orange_range = _in_range(orange_range_x)
-		var in_green_range = _in_range(green_range_x)
+	if normalDone:
+		regular_done.emit()
+		return
+	var in_orange_range = _in_range(orange_range_x)
+	var in_green_range = _in_range(green_range_x)
 		
-		if in_orange_range:
-			orange_done.emit()
-		elif in_green_range:
-			green_done.emit()
-		else:
-			fail.emit()
+	if in_orange_range:
+		orange_done.emit()
+	elif in_green_range:
+		green_done.emit()
 	else:
-		first_time = false
-		set_process(true)
-		start()
+		fail.emit()
+
+	
+	#set_process(true)
+	#start()
 		
 	
 	
