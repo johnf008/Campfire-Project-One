@@ -28,6 +28,5 @@ offset_top = -20.0
 offset_right = 247.5
 grow_horizontal = 2
 grow_vertical = 0
-text = "Test"
 label_settings = SubResource("LabelSettings_kud1s")
 horizontal_alignment = 1

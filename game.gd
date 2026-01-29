@@ -26,7 +26,3 @@ func _reset():
 		
 		#i need something here that tells the game yo we're ready for another input
 		startAgain.emit()
-
-
-func _on_area_2d_body_entered(body: Node2D) -> void:
-	pass # Replace with function body.
