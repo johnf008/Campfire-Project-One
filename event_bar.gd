@@ -15,13 +15,13 @@ var x_end_position: float
 var green_range_x = Vector2(9,17)
 var orange_range_x = Vector2(35, 46)
 
+var ready_for_check = false
 var ready_for_input = true
 
 func _ready() -> void:
 	x_end_position = global_position.x - (indicator.size.x) / 2
 	print("Bar size: ", size)
 	print("Indicator size: ", indicator.size)
-	start()
 
 func start():
 	var end_center_offset = Vector2(size.x, size.y / 2)
@@ -77,3 +77,7 @@ func reset():
 
 func _on_game_start_again() -> void:
 	ready_for_input = true
+
+
+func _on_character_body_2d_start_bar() -> void:
+	start()
