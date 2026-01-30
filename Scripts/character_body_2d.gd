@@ -6,6 +6,7 @@ signal six_seven()
 const MAX_SPEED = 100
 var last_direction := Vector2(1,0)
 var fishing_ability = false
+var running_the_bar = false
 @export var event_bar: TextureRect
 
 var wait_for_me = 0
@@ -39,15 +40,20 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		
 		
 		#i wanna emit something to the event bar that says yo i want to start the thing
-		if Input.is_action_just_pressed("accept"):
-			print("Broooo did you do it?")
-			
-			startBar.emit()
-			
+		
 		
 		
 	wait_for_me += 1
+func _input(event: InputEvent) -> void:
+	if Input.is_action_just_pressed("accept") and fishing_ability and not running_the_bar:
+			print("Broooo did you do it?")
+			
+			running_the_bar = true
+			
+			startBar.emit()
+			event_bar.visible = true
 func _on_area_2d_body_exited(body: Node2D) -> void:
 	fishing_ability = false
 	event_bar.visible = false
+	running_the_bar = false
 	
