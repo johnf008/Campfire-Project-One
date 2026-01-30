@@ -20,7 +20,9 @@ var ready_for_input = true
 var first_time = true
 
 var touching_water = false
-var trigger_fishing = false
+var trigger_fishing := false
+
+var u_active = false
 
 func _ready() -> void:
 	x_end_position = global_position.x - (indicator.size.x) / 2
@@ -38,6 +40,7 @@ func start():
 	var indicator_ceter_off_set = indicator.size / 2
 	
 	indicator.position = end_center_offset - indicator_ceter_off_set
+	u_active = true
 	
 	
 	print("Bro have you started")
@@ -48,22 +51,18 @@ func _process(delta: float) -> void:
 	if indicator.position.x < -indicator.size.x / 2:
 		_finish(true)
 
-func _input(_event: InputEvent) -> void:
-	
-	if Input.is_action_just_pressed("accept") and ready_for_input and trigger_fishing:
+func _unhandled_input(event: InputEvent) -> void:	
+	if Input.is_action_just_pressed("accept"):
 		_finish()
 		ready_for_input = false
-		print("six")
+		print("is this registering")
 		
-	if Input.is_action_just_pressed("accept") and touching_water and !is_processing():
-			trigger_fishing = true
-			event_bar.visible = true
-			event_bar.visible = true
-			set_process(true)
-			print("seven")
+		event_bar.visible = true
+			
 	
 
 func _finish(normalDone = false):
+	u_active = false
 	set_process(false)
 	
 	if normalDone:
@@ -108,7 +107,6 @@ func _on_game_start_again() -> void:
 func _on_character_body_2d_start_bar() -> void:
 	
 	start()
-	set_process(true)
 
 
 func _on_character_body_2d_six_seven() -> void:
