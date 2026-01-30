@@ -23,6 +23,8 @@ var touching_water = false
 var trigger_fishing := false
 
 var we_ready = false
+var are_we_ready_fr = false
+var can_check = false
 
 func _ready() -> void:
 	x_end_position = global_position.x - (indicator.size.x) / 2
@@ -35,14 +37,17 @@ func start():
 	#okay so i figured out that the error had to do with the indicators
 	#position already starting at the end making the trigger play so i need the trigger 
 	#to start at the beginning
-	
+	set_process(true)
 	var end_center_offset = Vector2(size.x, size.y / 2)
 	var indicator_ceter_off_set = indicator.size / 2
 	
 	indicator.position = end_center_offset - indicator_ceter_off_set
+	we_ready = true
 	
-	
-	
+	await get_tree().process_frame
+	can_check = true
+
+
 	print("Bro have you started")
 func _process(delta: float) -> void:
 	
@@ -52,7 +57,7 @@ func _process(delta: float) -> void:
 		_finish(true)
 
 func _unhandled_input(event: InputEvent) -> void:	
-	if Input.is_action_just_pressed("accept") and we_ready:
+	if Input.is_action_just_pressed("accept") and we_ready and can_check:
 		_finish()
 		ready_for_input = false
 		#print("is this registering")
@@ -106,7 +111,6 @@ func _on_game_start_again() -> void:
 func _on_character_body_2d_start_bar() -> void:
 	#print("is ts working tsts")
 
-	we_ready = true
 	start()
 
 
